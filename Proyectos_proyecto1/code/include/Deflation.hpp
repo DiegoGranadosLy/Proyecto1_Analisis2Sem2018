@@ -13,9 +13,14 @@
 
 #include <vector>
 #include <type_traits>
+#include <iostream>
+#include <complex>
+
+#include "formulaformat.h"
 
 #include <boost/type_traits/is_complex.hpp>
 #include <boost/math/tools/polynomial.hpp>
+#include <boost/array.hpp>
 
 
 namespace anpi {
@@ -94,7 +99,7 @@ polynomial<T> dividirPolinomiosComplex(const polynomial<T>& poly_dividendo, cons
    * @return deflated polynomial
    */
   template<class T>
-  bmt::polynomial<T> deflate(const bmt::polynomial<T>& poly, const T& root, T& residuo, T& tolerance=anpi::epsilon<T>())
+  bmt::polynomial<T> deflate(const bmt::polynomial<T>& poly, const T& root, T& residuo)
   {
     int const grado_poly(poly.size() - 1);     
     //Crear polinomio a partir de raiz
@@ -118,7 +123,7 @@ polynomial<T> dividirPolinomiosComplex(const polynomial<T>& poly_dividendo, cons
    * @return deflated polynomial
    */
   template<class T>
-  bmt::polynomial<T> deflate2(const bt::polynomial<T>& poly, const std::complex<T>& root, bt::polynomial<T>& residuo, T& tolerance=anpi::epsilon<T>())
+  bmt::polynomial<T> deflate2(const bmt::polynomial<T> &poly, const std::complex<T> &root, bmt::polynomial<T> &residuo)
   {
   //Declara variables locales
   int grado_poly(poly.size() - 1);
@@ -135,7 +140,4 @@ polynomial<T> dividirPolinomiosComplex(const polynomial<T>& poly_dividendo, cons
   return dividirPolinomios(poly, poly_root, residuo);
   } 
 }
-
-
-
 #endif
